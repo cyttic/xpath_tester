@@ -18,20 +18,43 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>341</width>
-      <height>541</height>
+      <y>50</y>
+      <width>371</width>
+      <height>501</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">
      <rect>
-      <x>363</x>
-      <y>9</y>
-      <width>421</width>
-      <height>541</height>
+      <x>403</x>
+      <y>49</y>
+      <width>381</width>
+      <height>501</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>10</y>
+      <width>661</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>88</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выполнить</string>
     </property>
    </widget>
   </widget>
@@ -48,10 +71,16 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="action"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action">
+   <property name="text">
+    <string>нету пока ничего</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

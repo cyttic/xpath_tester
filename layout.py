@@ -19,11 +19,17 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(10, 10, 341, 541))
+        self.textEdit.setGeometry(QtCore.QRect(10, 50, 371, 501))
         self.textEdit.setObjectName("textEdit")
         self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit_2.setGeometry(QtCore.QRect(363, 9, 421, 541))
+        self.textEdit_2.setGeometry(QtCore.QRect(403, 49, 381, 501))
         self.textEdit_2.setObjectName("textEdit_2")
+        self.textEdit_3 = QtWidgets.QTextEdit(self.centralwidget)
+        self.textEdit_3.setGeometry(QtCore.QRect(120, 10, 661, 31))
+        self.textEdit_3.setObjectName("textEdit_3")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(10, 10, 88, 31))
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 24))
@@ -34,19 +40,30 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.action = QtWidgets.QAction(MainWindow)
+        self.action.setObjectName("action")
+        self.menuFile.addAction(self.action)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        #initializing my xml class
-        xml_pr = xml_process()
-        self.textEdit.setText(xml_pr.xml_data)
+        self.xml_pr = xml_process()
+        self.textEdit.setText(self.xml_pr.xml_data)
 
+        #signals
+        self.pushButton.clicked.connect(self.onBtnExecuteClick)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.pushButton.setText(_translate("MainWindow", "Выполнить"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.action.setText(_translate("MainWindow", "нету пока ничего"))
+
+    def onBtnExecuteClick(self):
+        result = self.xml_pr.parsing( self.textEdit_3.toPlainText())
+        self.textEdit_2.setText(result)
+
 
 
 if __name__ == "__main__":

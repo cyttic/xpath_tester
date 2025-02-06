@@ -44,21 +44,23 @@ class xml_process():
         #grades = root.xpath("/descendant::name[ancestor::student]")
         #grades = root.xpath("/descendant::*[attribute::ggg]/preceding-sibling::*")
         #####################################
-        self.grades = root.xpath(xpath_que)
+        try:
+            self.grades = root.xpath(xpath_que)
+        except Exception as e:
+            return 'Error in the xpath'
 
         #Processing end printing result
         new_root = etree.Element("result")
         result = []
         result.append('#'*35)
-        result.append(f'{len(grades)} results was founded in xml')
-        if len(grades) > 0 and len(str(grades[0])) > 10 :#If-else because the result might be a short attribute or a long XML element
-            for i in  grades:
+        result.append(f'{len(self.grades)} results was founded in xml')
+        if len(self.grades) > 0 and len(str(self.grades[0])) > 10 :#If-else because the result might be a short attribute or a long XML element
+            for i in  self.grades:
                 new_root.append(i)
                 result.append(etree.tostring(new_root, pretty_print=True, encoding="unicode"))
                 new_root.clear()
-                append('*'*35)
-
-        #print(etree.tostring(new_root, pretty_print=True, encoding="unicode"))
+                result.append('*'*35)
+            return ''.join(result)
         else:
-            append(grades)
+            return ' '.join(self.grades)
 
