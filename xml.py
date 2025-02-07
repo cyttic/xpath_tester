@@ -28,10 +28,15 @@ class xml_process():
             </interest >
         </agency>
     """
+    def setTextxml(self,xml_new):
+        self.xml_data = xml_new
 
     def parsing(self, xpath_que):
     # Parsing XML
-        root = etree.fromstring(self.xml_data)
+        try:
+            root = etree.fromstring(self.xml_data)
+        except Exception as e:
+            return 'Some error in the xml'
         ####################################
         #      Example queries xpath
         ####################################

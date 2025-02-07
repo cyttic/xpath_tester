@@ -15,24 +15,37 @@ from xml import xml_process
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1027, 869)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(10, 50, 371, 501))
-        self.textEdit.setObjectName("textEdit")
-        self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit_2.setGeometry(QtCore.QRect(403, 49, 381, 501))
-        self.textEdit_2.setObjectName("textEdit_2")
-        self.textEdit_3 = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit_3.setGeometry(QtCore.QRect(120, 10, 661, 31))
-        self.textEdit_3.setObjectName("textEdit_3")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(10, 10, 88, 31))
         self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout.addWidget(self.pushButton)
+        self.textEdit_3 = QtWidgets.QTextEdit(self.centralwidget)
+        #self.textEdit_3.setMinimumSize(QtCore.QSize(914, 0))
+        #self.textEdit_3.setMaximumSize(QtCore.QSize(16777215, 397))
+        self.textEdit_3.setMaximumHeight(30)
+        self.textEdit_3.setStyleSheet("heig4ht: 50p")
+        self.textEdit_3.setObjectName("textEdit_3")
+        self.horizontalLayout.addWidget(self.textEdit_3)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.textEdit.setObjectName("textEdit")
+        self.horizontalLayout_2.addWidget(self.textEdit)
+        self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
+        #self.textEdit_2.setMaximumSize(QtCore.QSize(500, 601))
+        self.textEdit_2.setObjectName("textEdit_2")
+        self.horizontalLayout_2.addWidget(self.textEdit_2)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 24))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1027, 24))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -47,6 +60,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        #initialize xml cls
         self.xml_pr = xml_process()
         self.textEdit.setText(self.xml_pr.xml_data)
 
@@ -61,9 +76,9 @@ class Ui_MainWindow(object):
         self.action.setText(_translate("MainWindow", "нету пока ничего"))
 
     def onBtnExecuteClick(self):
-        result = self.xml_pr.parsing( self.textEdit_3.toPlainText())
+        self.xml_pr.setTextxml( self.textEdit.toPlainText())
+        result = self.xml_pr.parsing(self.textEdit_3.toPlainText())
         self.textEdit_2.setText(result)
-
 
 
 if __name__ == "__main__":
