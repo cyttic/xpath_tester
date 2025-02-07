@@ -57,14 +57,13 @@ class xml_process():
         #Processing end printing result
         new_root = etree.Element("result")
         result = []
-        result.append('#'*35)
-        result.append(f'{len(self.grades)} results was founded in xml')
+        result.append(f'{"#"*5} {len(self.grades)} results was founded in xml {"#"*5}\n')
         if len(self.grades) > 0 and len(str(self.grades[0])) > 10 :#If-else because the result might be a short attribute or a long XML element
             for i in  self.grades:
                 new_root.append(i)
                 result.append(etree.tostring(new_root, pretty_print=True, encoding="unicode"))
                 new_root.clear()
-                result.append('*'*35)
+                result.append('*'*20)
             return ''.join(result)
         else:
             return ' '.join(self.grades)
